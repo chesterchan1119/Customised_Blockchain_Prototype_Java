@@ -1,12 +1,8 @@
-# COMP4137-Project
+# COMP4137-Customised Blockchain System Prototype
 
-Block and Blockchain 
 
-The Block is a fundamental component of the blockchain system that stores massage or transaction records in a decentralized and secure manner. Each Block in the blockchain is linked to its previous block to form a chain of blocks, which is a Blockchain. 
 
-In our block class, there is a collection of variables that help to construct and manage blocks. Our block has three major features: being able to connect to the previous block, storing the transaction record (at most two in one block), and adjusting difficulty. 
-
-Block Class: 
+## Block Class: 
 
 1. index: is an integer that specifies the block's position in the blockchain. The Genesis Block's index will be 0. 
 
@@ -28,13 +24,13 @@ Here are several major methods of the Block class that are used to manage and ma
 
 The calculateBlockHash() method is utilized to generate the block's unique hash based on the block's index, previousHash, timeStamp, and data. The addTransaction() method is used to check whether the block is full and add a new transaction record to the block's transactions list if it is not full. The getLatestTransaction() method will return the most recent transaction from the transaction records list. 
 
-Blockchain Class: 
+## Blockchain Class: 
 
 Our blockchain is represented by an ArrayList of Block objects, and the ArrayList would be the only attribute in the class. 
 
 The first block in the blockchain would be created by the generateGenesisBlock() method, and the genesis block would be assigned index 0 with no previous hash and a specified degree of difficulty.  Then, the isValidNewBlock() method is used to validate the integrity of a newly inserted block by examining its hash value and ensuring that it accurately links to the preceding block in the chain. If the new block is validated, the generateNextBlock() method can be used to a new block is added to the chain by creating a new Block object and appended it to the ArrayList. The Blockchain class also includes the getLeastBlock() method returns the block inserted most recently to the chain. 
 
-Mining and Minting 
+## Mining and Minting 
 
 The Mine class is also a crucial component of our blockchain system, which has two major functions: mining new blocks and modifying the blockchain's difficulty level. The Mine class contains multiple attributes and methods to support the two features. 
 
@@ -54,7 +50,7 @@ The getAdjustedDifficulty() method is used to compute the altered difficulty deg
 
  
 
-Minting a new coin 
+## Minting a new coin 
 
 Minting a new coin on a blockchain creates a new block that includes a transaction that generates new coins and adds them to the total supply. 
 
@@ -70,19 +66,21 @@ Minting a new coin on a blockchain creates a new block that includes a transacti
 
  
 
-Output Results: 
+## Output Results: 
+<img width="285" alt="image" src="https://github.com/chesterchan1119/Customised_Blockchain_Prototype_Java/assets/110362704/abcd23e7-cbfb-4fd6-b233-67024347603c">
+
 
  
 
  
 
-Transactions 
+## Transactions 
 
 We have designed a transaction to record every transfer of digital assets from one address to another. It contains information about the sender, the recipient, and the amount of cryptocurrency being transferred.  
 
 The transaction includes two types of transactions: coinbase transactions and peer-to-peer transaction.  
 
-Transaction Class: 
+### Transaction Class: 
 
 Here we define class variables for the transaction. A transaction object has a 
 
@@ -104,7 +102,7 @@ The getOutput() returns the output object of the transaction.
 
  
 
-Transaction Input Class: 
+### Transaction Input Class: 
 
 This Transaction input class represents an input to a transaction in a blockchain system. The class has five instance variables: previousTransactionId, previousIndex, signature, pubKey, and priKey. 
 
@@ -120,7 +118,7 @@ generates a digital signature using RSA encryption for the input data using the 
 
 It first calls the RSASignUtils.sign() method to sign the input data using the private key, and then encodes the resulting signature using Base64 encoding. It then calls the RSASignUtils.verify() method to verify the signature using the public key pubKey. Here we checked whether the data came from the private key that is corresponding to the public key. If the verification is successful, the method returns the signature; otherwise, it returns an error message. 
 
-Transaction Output Class: 
+### Transaction Output Class: 
 
 TransactionOutput class represents an output of a transaction in a blockchain system, defines the structure of our transaction output in a blockchain system. 
 
@@ -136,11 +134,12 @@ toString() method returns a string representation of the address and amount of t
 
 Once a transaction is created, it is broadcast to the network and validated by miners. If the transaction is valid, it is added to the blockchain and becomes a permanent record of the transfer. 
 
-Output Results:  
+### Output Results:  
+<img width="496" alt="image" src="https://github.com/chesterchan1119/Customised_Blockchain_Prototype_Java/assets/110362704/29b840ab-25d0-4057-b513-fba714ae5026">
 
  
 
-Network 
+## Network 
 
 The system hosts a peer-to-peer network that facilitates communication between nodes participating in the system. It uses the Transmission Control Protocol (TCP) to ensure that all nodes are guaranteed to receive information on any changes in the blockchain. As such, the java.net package was used to develop the network. 
 
@@ -156,7 +155,8 @@ In this system, the server can be referred to as the ‘receiver,’ by which it
 
 A client in the system can be referred to as a ‘sender,’ its job is to send instructions to alter the blockchain of its connected server’s node. Since the network is peer-to-peer, multiple clients (sockets) are created to facilitate sending requests to all servers in the network. This is achieved by allowing sockets to be created using a loop that iterates through a text file storing the ports of all nodes. This allows a node to be connected to all its peers and satisfies the requirement of many in the blockchain space to have a decentralized network. 
 
-Output Results: 
+### Output Results: 
+<img width="393" alt="image" src="https://github.com/chesterchan1119/Customised_Blockchain_Prototype_Java/assets/110362704/fbc2ddf6-86d3-44a1-aa70-29b84417e20d">
 
  
 
